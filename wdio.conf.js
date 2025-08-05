@@ -136,7 +136,10 @@ exports.config = {
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
-        require: ['./step-definitions/login.steps.js'],
+        require: [
+            './step-definitions/login.steps.js',
+            './step-definitions/order.steps.js'
+        ],
         backtrace: false,
         requireModule: [],
         dryRun: false,

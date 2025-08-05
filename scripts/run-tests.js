@@ -12,7 +12,8 @@ const TEST_CATEGORIES = {
     'error-handling': '@error-handling',
     'validation': '@validation',
     'session': '@session',
-    'regression': '@regression'
+    'regression': '@regression',
+    'order': '@order'
 };
 
 // Get command line arguments

@@ -20,7 +20,7 @@ These scenarios validate the order flow for different users and edge cases.
 **And** clicks on the top result
 **Then** the user should be redirected to the customer details screen
 **When** clicks on "Create Order Per Pieces"
-**Then** the user should be redirected to the Order Screen
+**Then** the user should be redirected to the Garment Screen
 **When** choose any garment visible
 **And** clicks on "Add to Order"
 **And** clicks on "Close"
@@ -46,8 +46,8 @@ These scenarios validate the order flow for different users and edge cases.
 **Then** the user should be redirected to the customer details screen
 **When** clicks on "Create Order Per Weight"
 **Then** the user should be redirected to the per weight Booking Screen
-**When** clicks on "Garment Details"
-**Then** the user should be redirected to the Garment Screen
+**When** double click on "Garment Details"
+**Then** the user should be redirected to the per weight Garment Screen
 **When** choose any garment visible
 **And** clicks on "Continue"
 **Then** the user should be redirected to the per weight Booking Screen

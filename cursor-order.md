@@ -7,13 +7,13 @@ To regenerate: node generate-module-prompt.js Order cursor-order.md
 # Cursor AI Prompt: Enhanced Order Testing with Cucumber & C# (.NET)
 
 ## 🎯 **Objective**
-Create a comprehensive Order testing framework using Cucumber `.feature` files and C# `.steps.cs` files that incorporates all advanced testing patterns, error handling, and validation checks developed through extensive testing experience.
+Create a comprehensive Order testing framework using Cucumber `.feature` files and C# `.steps.js` files that incorporates all advanced testing patterns, error handling, and validation checks developed through extensive testing experience.
 
 ## 📋 **Requirements**
 
 Convert the following Order test scenarios into:
 1. **A Cucumber `.feature` file** in Gherkin format (`features/order.feature`)
-2. **Matching C# Step Definitions** using Selenium WebDriver (`step-definitions/OrderSteps.cs`)
+2. **Matching C# Step Definitions** using Selenium WebDriver (`step-definitions/order.steps.js`)
 
 ---
 
@@ -37,15 +37,18 @@ private const string BRANCH_PIN_SELECTOR = "#txtBranchPin";
 private const string LOGIN_BUTTON_SELECTOR = "#btnLogin";
 private const string CUSTOMER_SEARCH_DROPDOWN_SELECTOR = "#drpDefaultCustomerSearch";
 private const string CUSTOMER_SEARCH_SELECTOR = "#txtCustomer";
-private const string ORDER_PER_PIECES_SELECTOR = "#txtCustomer";
+private const string ORDER_PER_PIECES_SELECTOR = "#lnkDrop";
 private const string ORDER_PER_WEIGHT_SELECTOR = "#lnkLaundry";
 private const string CONTINUE_SELECTOR = "#btnPopUpAddGarment";
 private const string PER_WEIGHT_SAVE_ORDER_SELECTOR = "#btnCreateBooking";
 private const string PACKAGE_POP_UP_SELECTOR = "#divPkgRchInfo";
-private const string SKIP_SELECTOR = "#divPkgRchInfo";
+private const string SKIP_SELECTOR = "#btnPkgSkip";
 private const string CHECKOUT_SELECTOR = "#btnCreateOrder";
-private const string ORDER_PER_WEIGHT_SELECTOR = "#lnkLaundry";
-private const string ORDER_PER_WEIGHT_SELECTOR = "#lnkLaundry";
+private const string RANDOM_GARMENT_SELECTOR = ".Garment-Binding";
+private const string ADD_TO_ORDER_SELECTOR = "#achrAddItem";
+private const string CLOSE_SELECTOR = "#btnCancel";
+private const string SAVE_ORDER_SELECTOR = "#btnCreateOrder";
+private const string ADD_TO_ORDER_SELECTOR = "#achrAddItem";
 ```
 
 ### **URLs & Navigation:**
@@ -53,45 +56,26 @@ private const string ORDER_PER_WEIGHT_SELECTOR = "#lnkLaundry";
 - **Base URL:** `https://cleankart.quickdrycleaning.com/Login`
 - **Dashboard URL:** `https://cleankart.quickdrycleaning.com/sub1/App/home?EventClick=True`
 - **Customer Details Screen URL:** `https://cleankart.quickdrycleaning.com/sub1/App/new_admin/CustomerDashboard?CCode=Cust617&IsTour=0&ClearContent=4-6-2025%2013:33:46`
-- **Module Page:** Navigate to `/{module_path}` 
-- **Success Redirect Pattern:** `{YOUR_SUCCESS_URL_PATTERN}`
+- **Garment Screen URL:** `https://cleankart.quickdrycleaning.com/sub1/App/Bookings_New/frmbooking?CustBN=Cust617&IsTour=0&ClearContent=1-5-2025-17:44:44:306`
+- **Booking Screen URL:** `https://cleankart.quickdrycleaning.com/sub1/App/Bookings_New/frmbooking?CustBN=Cust617&IsTour=0&ClearContent=1-5-2025-17:44:44:306`
+- **Invoice Screen URL:** `https://cleankart.quickdrycleaning.com/sub1/App/ThermalPrinter/BookingSlip?BN=AW510-101%20Aug%202025&ClearContent=5-7-2025%2017:50:58`
+- **Per Weight Booking Screen URL:** `https://cleankart.quickdrycleaning.com/sub1/App/Bookings_New/LaundryBooking?CustBN=Cust617&IsTour=0&ClearContent=1-5-2025-17:52:29:739`
+- **Per Weight Garment Screen URL:** `https://cleankart.quickdrycleaning.com/sub1/App/Bookings_New/LaundryBooking?CustBN=Cust617&IsTour=0&ClearContent=1-5-2025-17:52:29:739`
+- **Per Weight Invoice Screen URL:** `https://cleankart.quickdrycleaning.com/sub1/App/ThermalPrinter/BookingSlip?BN=AW512-101%20Aug%202025&ClearContent=5-7-2025%2018:1:49`
 
 ### **Test Data:**
 *[CUSTOMIZE FOR YOUR MODULE]*
 ```csharp
 // Use configuration/environment variables
-private readonly string {TEST_DATA_1} = ConfigurationManager.AppSettings["{TEST_DATA_1_KEY}"] ?? "{default_value}";
-private readonly string {TEST_DATA_2} = ConfigurationManager.AppSettings["{TEST_DATA_2_KEY}"] ?? "{default_value}";
-private readonly string {TEST_DATA_3} = ConfigurationManager.AppSettings["{TEST_DATA_3_KEY}"] ?? "{default_value}";
+private readonly string {VALID_USER} = ConfigurationManager.AppSettings["TEST_STORE_EMAIL"] ?? "S_admin";
+private readonly string {VALID_PASSWORD} = ConfigurationManager.AppSettings["TEST_STORE_PASSWORD"] ?? "admin@123";
+private readonly string {VALID_STORE_CODE} = ConfigurationManager.AppSettings["TEST_STORE_CODE"] ?? "SUB1";
 
 // Example for Login Module:
 // private readonly string VALID_USER = ConfigurationManager.AppSettings["TEST_USER"] ?? "S_admin";
 // private readonly string VALID_PASSWORD = ConfigurationManager.AppSettings["TEST_PASSWORD"] ?? "admin@123";
 // private readonly string VALID_STORE_CODE = ConfigurationManager.AppSettings["TEST_STORE_CODE"] ?? "SUB1";
 ```
-
----
-
-## 🧪 **Test Scenarios to Implement**
-*[CUSTOMIZE SCENARIOS FOR YOUR MODULE]*
-
-### **1. Positive Scenarios**
-- **Successful order** with valid data
-- **{Secondary_positive_scenario}** 
-
-### **2. Negative Scenarios**
-- **{Invalid_input_1}** validation
-- **{Invalid_input_2}** validation  
-- **{Invalid_input_3}** handling
-- **Empty field validation** (all required fields blank)
-
-### **3. Error Handling Patterns**
-- **Alert popup detection** and validation
-- **Div error message** validation
-- **Form submission prevention** checks
-- **Auto-dismissed alert** fallback handling
-
----
 
 ## 🎯 **Advanced Features to Include**
 
@@ -155,53 +139,6 @@ public void WhenTheSessionExpiresDueToInactivity()
     Thread.Sleep(2000);
 }
 ```
-
----
-
-## 📝 **Feature File Structure Template**
-*[CUSTOMIZE FOR YOUR MODULE]*
-
-```gherkin
-Feature: Order Module
-  As a user
-  I want to be able to {primary_functionality}
-  So that I can {user_benefit}
-
-  Background:
-    Given the user is on the order page
-
-  @positive @smoke
-  Scenario: Successful order with valid data
-    When the user {action_1} "{test_data_1}"
-    And {action_2} "{test_data_2}"
-    And {action_3} "{test_data_3}"
-    And clicks the {action_button}
-    Then the user should {expected_positive_result}
-
-  @negative @error-handling
-  Scenario: Order with {invalid_condition}
-    When the user {action_1} "{valid_data_1}"
-    And {action_2} "{invalid_data}"
-    And {action_3} "{valid_data_3}"
-    And clicks the {action_button}
-    Then the user should see an error message "{expected_error_message}"
-
-  @negative @validation
-  Scenario: Order with empty fields
-    When the {required_fields} are left empty
-    And the user clicks the {action_button}
-    Then the user should see validation messages "{validation_message_1}", "{validation_message_2}", and "{validation_message_3}"
-
-  @session @regression
-  Scenario: Session timeout and recovery (if applicable)
-    Given the user has successfully {completed_primary_action}
-    When the session expires due to inactivity
-    Then the user should be redirected to the {login_or_start} page
-    And upon {re_authentication_or_restart}
-    And the {module_functionality} should be accessible again
-```
-
----
 
 ## 🔍 **Key Testing Patterns**
 
@@ -274,7 +211,6 @@ private void ValidateErrorMessage(string expectedMessage)
 ## 🏗️ **Project Structure**
 
 ```
-OrderTesting/
 ├── Features/
 │   └── Order.feature
 ├── StepDefinitions/
@@ -325,83 +261,3 @@ After implementation, you should achieve:
 - **Cross-browser testing** capabilities
 
 ---
-
-## 🔧 **Module Customization Guide**
-
-### **🚨 IMPORTANT: How to Use This Template Without Losing Reusability**
-
-**Option 1: Create Module-Specific Copies (Recommended)**
-```bash
-# Keep this cursor.md as your master template
-# Create copies for each module:
-cp cursor.md cursor-login.md
-cp cursor.md cursor-registration.md  
-cp cursor.md cursor-order.md
-# Then customize each copy
-```
-
-**Option 2: Use Find & Replace in Your IDE**
-- Open cursor.md
-- Use "Find & Replace All" in your IDE to replace placeholders
-- Use the customized version for your current module
-- **Important:** Undo all changes (Ctrl+Z) after copying the content to preserve the template
-
-**Option 3: Use the Auto-Generator Script (Most Efficient)**
-```bash
-# I've created generate-module-prompt.js for you!
-# Usage:
-node generate-module-prompt.js login cursor-login.md
-node generate-module-prompt.js registration cursor-registration.md  
-node generate-module-prompt.js order cursor-order.md
-
-# This automatically creates customized versions while keeping cursor.md intact
-```
-
-### **Steps to Adapt This Template:**
-
-1. **Replace Placeholders:**
-   - `Order` → Your module name (e.g., "Login", "Registration", "Order Management")
-   - `order` → Lowercase version (e.g., "login", "registration", "order")
-   - `Order` → PascalCase version (e.g., "Login", "Registration", "OrderManagement")
-
-2. **Update Element Selectors:**
-   - Replace `{ELEMENT_1}_SELECTOR`, `{ELEMENT_2}_SELECTOR`, etc. with your actual element selectors
-   - Update the CSS selector values with your application's actual element IDs/classes
-
-3. **Customize URLs:**
-   - Update `{YOUR_BASE_URL}` with your application's base URL
-   - Replace `{module_path}` with the specific path to your module
-   - Update `{YOUR_SUCCESS_URL_PATTERN}` with the expected success redirect pattern
-
-4. **Define Test Data:**
-   - Replace `{TEST_DATA_1}`, `{TEST_DATA_2}`, etc. with your module-specific test data variables
-   - Update configuration keys and default values
-
-5. **Adapt Test Scenarios:**
-   - Customize positive and negative scenarios based on your module's functionality
-   - Update action descriptions and expected results
-
-6. **Modify Feature File:**
-   - Replace all `{placeholder}` values in the Gherkin scenarios
-   - Adapt the Given-When-Then steps to match your module's workflow
-
-### **Common Module Examples:**
-
-#### **Login Module:**
-- `Order` → "Login"
-- `order` → "login"
-- `{ELEMENT_1}_SELECTOR` → "USER_ID_SELECTOR"
-
-#### **Registration Module:**
-- `Order` → "User Registration"  
-- `order` → "registration"
-- `{ELEMENT_1}_SELECTOR` → "FIRST_NAME_SELECTOR"
-
-#### **Order Management Module:**
-- `Order` → "Order Management"
-- `order` → "order creation"
-- `{ELEMENT_1}_SELECTOR` → "PRODUCT_SELECTOR"
-
----
-
-*This modular prompt template incorporates all lessons learned from extensive testing experience and can be adapted for any module by following the customization guide above.*
